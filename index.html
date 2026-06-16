@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eats & Better | 何から始める？がすぐわかる、中高生のためのSDGsスタートガイド</title>
+    <!-- Tailwind CSS for high-quality minimalist design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for vector-based clean iconography -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#090d16',
+                        },
+                        sdgs: {
+                            4: '#C5192D',  /* 質の高い教育をみんなに */
+                            5: '#FF3A21',  /* ジェンダー平等 */
+                            7: '#FCC30B',  /* エネルギーをクリーンに */
+                            12: '#CF8D2A', /* つくる責任つかう責任 */
+                            14: '#007DBC', /* 海の豊かさを守ろう */
+                            15: '#56DB3E', /* 陸の豊かさも守ろう */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-shadow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+        }
+        .card-transition {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-transition:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 24px 48px rgba(9, 13, 22, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-[#F8F9FA] text-[#2D3142] font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- ナビゲーションバー -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-6 h-6 rounded-full bg-gradient-to-tr from-sdgs-5 via-sdgs-7 to-sdgs-14 flex items-center justify-center"></div>
+                <span class="text-base font-black text-navy-900 tracking-tight">Eats & Better</span>
+            </div>
+            <div class="text-[10px] text-slate-400 bg-slate-50 border border-slate-200/60 px-3 py-1 rounded-full font-mono font-bold tracking-wider">
+                SDGs START GUIDE FOR TEENS
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション & キーワード検索窓 -->
+    <section class="bg-white pt-16 pb-14 border-b border-slate-100/60 px-6 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-800 text-[10px] font-extrabold uppercase tracking-widest rounded-full mb-6">
+                What should I start with?
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black tracking-tight text-navy-900 mb-6 leading-tight">
+                「何から始めればいい？」が<br class="block md:hidden">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sdgs-12 via-sdgs-7 to-sdgs-14">
+                    1タップでわかるガイド
+                </span>
+            </h1>
+            <p class="text-xs md:text-sm text-slate-400 max-w-lg mx-auto mb-10 leading-relaxed font-semibold">
+                難しく考えたり、我慢したりしなくてOK。今日、今いる場所や気になる言葉から始められる、中高生の日常にフィットした小さなスタート方法を見つけましょう。
+            </p>
+
+            <!-- 検索窓 -->
+            <div class="max-w-xl mx-auto relative custom-shadow rounded-2xl border border-slate-200 bg-[#F8F9FA]">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </div>
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="キーワード（裏紙、スマホ、ボトル、服、SNSなど）で探す..." 
+                    class="w-full pl-11 pr-24 py-4 rounded-2xl bg-transparent placeholder-slate-300 focus:outline-none text-slate-800 text-sm transition"
+                >
+                <div class="absolute right-2 top-2">
+                    <button 
+                        id="search-button"
+                        class="bg-navy-900 hover:bg-slate-800 text-white px-5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition"
+                    >
+                        Search
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 人気のタグサジェスト -->
+            <div class="flex flex-wrap justify-center gap-2 mt-4 max-w-lg mx-auto text-[10px] text-slate-400 font-semibold">
+                <span>人気の言葉:</span>
+                <button onclick="setSearchTerm('裏紙')" class="underline hover:text-navy-900">#裏紙</button>
+                <button onclick="setSearchTerm('スマホ')" class="underline hover:text-navy-900">#スマホ</button>
+                <button onclick="setSearchTerm('ステッカー')" class="underline hover:text-navy-900">#ステッカー</button>
+                <button onclick="setSearchTerm('服')" class="underline hover:text-navy-900">#服</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- シチュエーション診断ボード (メインナビゲーション) -->
+    <section class="bg-white pb-16 px-6 border-b border-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-center text-[10px] font-black text-slate-300 uppercase tracking-widest mb-8">
+                ▼ いまどこにいる？気分のボタンを押してみて！
+            </h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button 
+                    onclick="selectSituation('🏫 学校で')" 
+                    class="situation-btn bg-slate-50 hover:bg-slate-100/80 p-5 rounded-2xl border border-slate-200/60 text-center card-transition flex flex-col items-center justify-center space-y-3"
+                    id="btn-school"
+                >
+                    <span class="text-2xl">🏫</span>
+                    <span class="text-xs font-bold text-navy-900">いま学校にいる</span>
+                    <span class="text-[10px] text-slate-400">授業・休み時間・部活</span>
+                </button>
+                <button 
+                    onclick="selectSituation('🏪 寄り道・放課後')" 
+                    class="situation-btn bg-slate-50 hover:bg-slate-100/80 p-5 rounded-2xl border border-slate-200/60 text-center card-transition flex flex-col items-center justify-center space-y-3"
+                    id="btn-store"
+                >
+                    <span class="text-2xl">🏪</span>
+                    <span class="text-xs font-bold text-navy-900">放課後・寄り道中</span>
+                    <span class="text-[10px] text-slate-400">コンビニ・カフェ・帰宅路</span>
+                </button>
+                <button 
+                    onclick="selectSituation('🏠 自室・おうち')" 
+                    class="situation-btn bg-slate-50 hover:bg-slate-100/80 p-5 rounded-2xl border border-slate-200/60 text-center card-transition flex flex-col items-center justify-center space-y-3"
+                    id="btn-room"
+                >
+                    <span class="text-2xl">🏠</span>
+                    <span class="text-xs font-bold text-navy-900">自室・おうちにいる</span>
+                    <span class="text-[10px] text-slate-400">スマホ・寝る前・お部屋</span>
+                </button>
+                <button 
+                    onclick="selectSituation('🛍️ 街・お買い物')" 
+                    class="situation-btn bg-slate-50 hover:bg-slate-100/80 p-5 rounded-2xl border border-slate-200/60 text-center card-transition flex flex-col items-center justify-center space-y-3"
+                    id="btn-shopping"
+                >
+                    <span class="text-2xl">🛍️</span>
+                    <span class="text-xs font-bold text-navy-900">お買い物・街歩き</span>
+                    <span class="text-[10px] text-slate-400">洋服選び・雑貨・お出かけ</span>
+                </button>
+            </div>
+
+            <!-- 診断サジェストポップアップ（リアルタイム反映） -->
+            <div id="diagnostic-banner" class="mt-8 bg-slate-50 rounded-2xl p-6 border border-slate-200/60 hidden relative">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-navy-900 text-white flex items-center justify-center text-lg shadow-sm">
+                        ✨
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1" id="diag-badge">SUGGESTION FOR YOU</h3>
+                        <p class="text-xs text-slate-500 mb-4" id="diag-intro"></p>
+                        <button onclick="scrollToResult()" class="text-xs font-black text-navy-900 underline flex items-center gap-1">
+                            おすすめアクションを見にいく <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- アクション一覧メインセクション -->
+    <main class="flex-grow max-w-6xl mx-auto px-6 py-12 w-full" id="actions-section">
+        
+        <!-- コントロールバー -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 pb-4 border-b border-slate-100">
+            <div>
+                <h2 class="text-sm font-black text-navy-900 tracking-tight uppercase" id="current-view-title">すべてのアクション一覧</h2>
+                <p class="text-[10px] text-slate-400 font-semibold mt-1">ピンときたものをタップすると、具体的なやり方がわかります</p>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button onclick="resetSearch()" class="text-[11px] font-bold text-slate-400 hover:text-navy-900 transition underline uppercase">すべて表示（リセット）</button>
+                <div class="text-[10px] text-slate-400 font-mono tracking-wider font-bold bg-white px-3 py-1.5 rounded-full border border-slate-100" id="results-count">
+                    ALL: 4
+                </div>
+            </div>
+        </div>
+
+        <!-- カードグリッド -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="action-cards-grid">
+            <!-- JavaScriptで動的生成 -->
+        </div>
+
+        <!-- 該当なし -->
+        <div id="empty-state" class="hidden text-center py-20">
+            <p class="text-slate-400 text-xs font-medium">該当するアクションが見つかりません。ボタンをタップしてリセットしてみましょう。</p>
+            <button onclick="resetSearch()" class="mt-4 text-xs font-extrabold tracking-widest uppercase underline text-navy-900 font-bold">Reset View</button>
+        </div>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-white text-slate-400 py-12 px-6 border-t border-slate-100">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-semibold tracking-wide">
+            <div class="flex items-center space-x-2 text-navy-900">
+                <span class="font-extrabold tracking-tight">Eats & Better</span>
+            </div>
+            <p class="text-slate-300">© 2026 Eats & Better. Youth-led Action Map for Sustainable Future.</p>
+        </div>
+    </footer>
+
+    <!-- アクション詳細モーダル -->
+    <div id="modal-container" class="fixed inset-0 bg-navy-900/10 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-content" class="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-xl transform scale-95 opacity-0 transition-all duration-300 border border-slate-100">
+            <div class="px-8 pt-8 pb-4 flex justify-between items-start">
+                <div id="modal-category-badge" class="px-3 py-1 text-[9px] font-bold uppercase tracking-widest rounded-md"></div>
+                <button onclick="closeModal()" class="text-slate-300 hover:text-slate-600 transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="px-8 pb-8">
+                <h3 id="modal-title" class="text-base font-bold text-navy-900 mb-6 leading-snug"></h3>
+                
+                <div class="mb-6">
+                    <h4 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2">💡 今日からできる具体的なスタートステップ</h4>
+                    <p id="modal-details" class="text-slate-600 text-xs leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-100 font-medium"></p>
+                </div>
+
+                <div>
+                    <h4 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2">🌍 これによってどんな変化が起きる？（環境効果）</h4>
+                    <p id="modal-impact" class="text-slate-500 text-xs leading-relaxed pl-2 border-l border-slate-200 font-medium"></p>
+                </div>
+            </div>
+            <div class="px-8 py-4 bg-slate-50/50 border-t border-slate-100 flex items-center justify-between">
+                <button 
+                    id="modal-like-btn"
+                    class="flex items-center space-x-2 text-xs font-bold border px-4 py-2 rounded-full transition"
+                >
+                    <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+                    <span id="modal-like-text">やってみる！</span>
+                    <span id="modal-like-count" class="bg-slate-200/60 text-slate-600 text-[9px] px-2 py-0.5 rounded-full font-mono ml-1">0</span>
+                </button>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 text-xs font-bold uppercase tracking-widest">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- コンパイル不要、ブラウザで100%確実に即時動作するJavaScript -->
+    <script>
+        // --- データベース定義 (中高生に身近な非食品SDGsアクション) ---
+        const ACTIONS_DATA = [
+            {
+                id: "act-1",
+                title: "プリントの裏紙をまとめて「雑記・勉強用パッド」にする",
+                category: "🏫 学校で",
+                tags: ["プリント", "裏紙", "勉強", "ノート", "学校", "授業"],
+                details: "配られたあとで不要になったプリントや、テスト用紙の裏を重ねてホチキスでとめるだけ。計算用紙やイラストの練習にどんどん使いましょう。ノートの消費を抑え、落書きも気軽にできます！",
+                impact: "紙（パルプ）の浪費を防ぎ、森林伐採量の抑制と製紙プロセスにかかる莫大なエネルギー・CO2をセーブ。身の回りの資源を「最後まで愛用する」気持ちが育ちます。",
+                color: "#C5192D", // 目標4: 質の高い教育をみんなに
+                defaultLikes: 48,
+                shortIntro: "授業でいらないプリントがあったら、裏をメモパッドに！まずは今日の授業から始めてみよう。"
+            },
+            {
+                id: "act-2",
+                title: "マイボトルのステッカーを自分で作ったりデコる",
+                category: "🏪 寄り道・放課後",
+                tags: ["水筒", "マイボトル", "デコ", "ステッカー", "放課後", "コンビニ", "塾", "寄り道"],
+                details: "お気に入りの水筒に、自分の推しのステッカーや自分で描いたイラストをペタペタ貼って「自分仕様」にカスタム！放課後の塾や寄り道に『見せびらかしたくなるボトル』にして持ち歩くのが最初の一歩です。",
+                impact: "毎日ペットボトル飲料を何気なく買う習慣が減ることで、使い捨てプラスチックごみの排出を大幅カット。ペットボトル製造＆リサイクル工程のCO2も削減します。",
+                color: "#007DBC", // 目標14: 海の豊かさを守ろう
+                defaultLikes: 89,
+                shortIntro: "いつものボトルを好きなロゴやステッカーでデコって、カバンに入れて出発しよう！"
+            },
+            {
+                id: "act-3",
+                title: "使っていないコンセントや充電器をコンセントから抜く",
+                category: "🏠 自室・おうち",
+                tags: ["充電", "コンセント", "スマホ", "電気", "部屋", "おうち"],
+                details: "スマホの充電が終わったら、充電コードをコンセントから外すだけ（コード単体でも差しっぱなしだと『待機電力』が発生しています）。寝る前に使用していない電気をオフにする習慣をつくりましょう。",
+                impact: "待機電力を防ぐことで、化石燃料の消費を抑え温室効果ガスを直接削減。チリツモで家庭の電気代セーブにも繋がる、最も手軽で誰も傷つけない地球防衛アクションです。",
+                color: "#FCC30B", // 目標7: エネルギーをクリーンに
+                defaultLikes: 63,
+                shortIntro: "スマホの充電が終わったら、コードを抜く！部屋を出るとき電気を消す、これだけでOK。"
+            },
+            {
+                id: "act-4",
+                title: "「1シーズンで捨てない」自分の定番服をクローゼットに持つ",
+                category: "🛍️ 街・お買い物",
+                tags: ["服", "古着", "お買い物", "クローゼット", "定番", "おしゃれ"],
+                details: "『今週流行っているから』で服を選ぶのではなく、『来年の同じ季節にもきっと着ているな』と笑顔で想像できるお気に入りの服を見つけること。友達と服を貸し借りしたり、古着をチェックするのもとてもおしゃれです。",
+                impact: "衣服の大量生産・大量廃棄システムによる環境汚染を抑制。服を1年長く大切に着るだけで、アパレル産業全体の地球に対するダメージを大幅に引き下げることができます。",
+                color: "#CF8D2A", // 目標12: つくる責任
+                defaultLikes: 71,
+                shortIntro: "次の買い物では「来年も着たいか」心の中で1秒想像してみて。それが立派なSDGsです。"
+            }
+        ];
+
+        // --- STREAMING_CHUNK: Managing application state variables... -->
+        // --- アプリケーション状態 ---
+        let currentSituation = "すべて";
+        let searchQuery = "";
+        let likesStore = { counts: {}, userLiked: [] };
+
+        // --- STREAMING_CHUNK: Launching and syncing likes storage... -->
+        // --- アプリ起動と初期設定 ---
+        function initApp() {
+            initLikes();
+            renderCards();
+            setupEventListeners();
+            lucide.createIcons();
+        }
+
+        // いいね機能のローカル保存同期（1回制限・取り消し対応）
+        function initLikes() {
+            const savedLikes = localStorage.getItem('eats_better_start_v1_likes');
+            if (savedLikes) {
+                try {
+                    likesStore = JSON.parse(savedLikes);
+                    ACTIONS_DATA.forEach(item => {
+                        if (likesStore.counts[item.id] === undefined) {
+                            likesStore.counts[item.id] = item.defaultLikes;
+                        }
+                    });
+                } catch (e) {
+                    resetLikes();
+                }
+            } else {
+                resetLikes();
+            }
+        }
+
+        function resetLikes() {
+            likesStore.counts = {};
+            ACTIONS_DATA.forEach(item => {
+                likesStore.counts[item.id] = item.defaultLikes;
+            });
+            likesStore.userLiked = [];
+            saveLikes();
+        }
+
+        function saveLikes() {
+            localStorage.setItem('eats_better_start_v1_likes', JSON.stringify(likesStore));
+        }
+
+        // --- STREAMING_CHUNK: Implementing search-input tags helper... -->
+        // タグによるかんたん検索挿入
+        function setSearchTerm(word) {
+            const input = document.getElementById("search-input");
+            if (input) {
+                input.value = word;
+                searchQuery = word;
+                renderCards();
+            }
+        }
+
+        // --- STREAMING_CHUNK: Handling diagnostic selection clicks... -->
+        // --- シチュエーション診断ボード制御 ---
+        function selectSituation(situation) {
+            currentSituation = situation;
+            
+            // ボタンの視覚アクティブ状態切り替え
+            document.querySelectorAll(".situation-btn").forEach(btn => {
+                btn.classList.remove("bg-navy-900", "text-white", "border-transparent");
+                btn.classList.add("bg-slate-50", "text-[#2D3142]", "border-slate-200/60");
+                const textNavy = btn.querySelector('.text-navy-900');
+                if (textNavy) textNavy.classList.remove('text-white');
+                const textSlate = btn.querySelector('.text-slate-400');
+                if (textSlate) textSlate.classList.remove('text-slate-200');
+            });
+
+            let activeBtnId = "";
+            let matchedItem;
+
+            if (situation.includes("学校")) {
+                activeBtnId = "btn-school";
+                matchedItem = ACTIONS_DATA.find(x => x.id === "act-1");
+            } else if (situation.includes("寄り道")) {
+                activeBtnId = "btn-store";
+                matchedItem = ACTIONS_DATA.find(x => x.id === "act-2");
+            } else if (situation.includes("自室")) {
+                activeBtnId = "btn-room";
+                matchedItem = ACTIONS_DATA.find(x => x.id === "act-3");
+            } else if (situation.includes("買い物")) {
+                activeBtnId = "btn-shopping";
+                matchedItem = ACTIONS_DATA.find(x => x.id === "act-4");
+            }
+
+            const activeBtn = document.getElementById(activeBtnId);
+            if (activeBtn) {
+                activeBtn.classList.remove("bg-slate-50", "text-[#2D3142]", "border-slate-200/60");
+                activeBtn.classList.add("bg-navy-900", "text-white", "border-transparent");
+                const textNavy = activeBtn.querySelector('.text-navy-900');
+                if (textNavy) textNavy.classList.add('text-white');
+                const textSlate = activeBtn.querySelector('.text-slate-400');
+                if (textSlate) textSlate.classList.add('text-slate-200');
+            }
+
+            // クイックバナー提案エリアの更新
+            const banner = document.getElementById("diagnostic-banner");
+            const badge = document.getElementById("diag-badge");
+            const intro = document.getElementById("diag-intro");
+            
+            if (banner && badge && intro && matchedItem) {
+                badge.textContent = `${situation} のおすすめファーストステップ`;
+                intro.textContent = matchedItem.shortIntro;
+                banner.classList.remove("hidden");
+            }
+
+            const titleEl = document.getElementById("current-view-title");
+            if (titleEl) {
+                titleEl.textContent = `${situation} におすすめのアクション`;
+            }
+
+            renderCards();
+        }
+
+        function scrollToResult() {
+            const section = document.getElementById("actions-section");
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+
+        // --- STREAMING_CHUNK: Constructing the card listing rendering logic... -->
+        // --- メインレンダリング (キーワード検索 × 診断フィルター) ---
+        function renderCards() {
+            const grid = document.getElementById("action-cards-grid");
+            const emptyState = document.getElementById("empty-state");
+            if (!grid || !emptyState) return;
+            grid.innerHTML = "";
+
+            const filteredData = ACTIONS_DATA.filter(item => {
+                // 1. シチュエーション診断フィルター
+                const matchesSituation = currentSituation === "すべて" || item.category === currentSituation;
+
+                // 2. キーワード検索フィルター (部分一致)
+                const searchLower = searchQuery.toLowerCase().trim();
+                const matchesSearch = !searchLower || 
+                    item.title.toLowerCase().includes(searchLower) ||
+                    item.category.toLowerCase().includes(searchLower) ||
+                    item.details.toLowerCase().includes(searchLower) ||
+                    item.tags.some(tag => tag.toLowerCase().includes(searchLower));
+
+                return matchesSituation && matchesSearch;
+            });
+
+            // 表示件数の更新
+            const countEl = document.getElementById("results-count");
+            if (countEl) {
+                countEl.textContent = `MATCHED: ${filteredData.length}`;
+            }
+
+            // 表示するカードがない場合のハンドリング
+            if (filteredData.length === 0) {
+                grid.classList.add("hidden");
+                emptyState.classList.remove("hidden");
+                return;
+            } else {
+                grid.classList.remove("hidden");
+                emptyState.classList.add("hidden");
+            }
+
+            // カードの生成
+            filteredData.forEach(item => {
+                const count = likesStore.counts[item.id] || 0;
+                const isLiked = likesStore.userLiked.includes(item.id);
+
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-3xl border border-slate-100 p-6 flex flex-col justify-between card-transition cursor-pointer relative overflow-hidden";
+                
+                card.innerHTML = `
+                    <div class="absolute top-0 left-0 right-0 h-[4px]" style="background-color: ${item.color};"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <span class="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded" style="background-color: ${item.color}15; color: ${item.color};">
+                                ${item.category}
+                            </span>
+                        </div>
+                        <h3 class="text-sm font-bold text-navy-900 mb-3 leading-snug tracking-tight">
+                            ${item.title}
+                        </h3>
+                        <p class="text-slate-400 text-[11px] line-clamp-3 mb-6 leading-relaxed font-semibold">
+                            ${item.details}
+                        </p>
+                    </div>
+                    
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-50 mt-auto">
+                        <button 
+                            class="like-btn flex items-center space-x-1.5 text-xs font-bold transition px-3 py-1.5 rounded-xl ${
+                                isLiked 
+                                ? 'text-rose-500 bg-rose-50' 
+                                : 'text-slate-300 hover:text-slate-500 hover:bg-slate-50'
+                            }"
+                            data-id="${item.id}"
+                        >
+                            <i data-lucide="heart" class="w-3.5 h-3.5 ${isLiked ? 'fill-current' : ''}"></i>
+                            <span class="like-count">${count}</span>
+                        </button>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-navy-900 flex items-center gap-1 group">
+                            スタート方法 <i data-lucide="arrow-right" class="w-3.5 h-3.5 transition group-hover:translate-x-1"></i>
+                        </span>
+                    </div>
+                `;
+
+                card.onclick = (e) => {
+                    const target = e.target;
+                    if (!target.closest('.like-btn')) {
+                        openModal(item.id);
+                    }
+                };
+
+                grid.appendChild(card);
+            });
+
+            lucide.createIcons();
+            bindLikeButtons();
+        }
+
+        // --- STREAMING_CHUNK: Handling user click interactions and modals... -->
+        // --- いいねのトグル（一回制限＆取り消し）処理 ---
+        function handleLikeToggle(id) {
+            const index = likesStore.userLiked.indexOf(id);
+            const isLiked = index > -1;
+
+            if (isLiked) {
+                likesStore.userLiked.splice(index, 1);
+                likesStore.counts[id] = Math.max(0, (likesStore.counts[id] || 1) - 1);
+            } else {
+                likesStore.userLiked.push(id);
+                likesStore.counts[id] = (likesStore.counts[id] || 0) + 1;
+            }
+
+            saveLikes();
+            renderCards();
+
+            // モーダルが現在開いていれば表示を同期
+            const modalContainer = document.getElementById("modal-container");
+            if (modalContainer && !modalContainer.classList.contains("hidden")) {
+                updateModalLikeButton(id);
+            }
+        }
+
+        function bindLikeButtons() {
+            document.querySelectorAll(".like-btn").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    const actionId = btn.getAttribute("data-id");
+                    if (actionId) handleLikeToggle(actionId);
+                });
+            });
+        }
+
+        // --- モーダルの管理ロジック ---
+        function openModal(id) {
+            const item = ACTIONS_DATA.find(x => x.id === id);
+            if (!item) return;
+
+            const badge = document.getElementById("modal-category-badge");
+            if (badge) {
+                badge.textContent = item.category;
+                badge.style.backgroundColor = `${item.color}15`;
+                badge.style.color = item.color;
+            }
+
+            const title = document.getElementById("modal-title");
+            if (title) title.textContent = item.title;
+
+            const details = document.getElementById("modal-details");
+            if (details) details.textContent = item.details;
+
+            const impact = document.getElementById("modal-impact");
+            if (impact) impact.textContent = item.impact;
+
+            updateModalLikeButton(item.id);
+
+            const container = document.getElementById("modal-container");
+            const content = document.getElementById("modal-content");
+            if (container && content) {
+                container.classList.remove("hidden");
+                setTimeout(() => {
+                    content.classList.remove("scale-95", "opacity-0");
+                    content.classList.add("scale-100", "opacity-100");
+                }, 10);
+            }
+        }
+
+        function updateModalLikeButton(id) {
+            const count = likesStore.counts[id] || 0;
+            const isLiked = likesStore.userLiked.includes(id);
+
+            const likeBtn = document.getElementById("modal-like-btn");
+            const likeText = document.getElementById("modal-like-text");
+            const likeCount = document.getElementById("modal-like-count");
+
+            if (!likeBtn || !likeText || !likeCount) return;
+
+            likeCount.textContent = count.toString();
+            likeText.textContent = isLiked ? "やってみる！登録済み" : "やってみる！";
+
+            likeBtn.className = `flex items-center space-x-2 text-xs font-bold border px-4 py-2 rounded-full transition ${
+                isLiked 
+                ? 'text-rose-500 bg-rose-50 border-rose-100' 
+                : 'text-slate-500 bg-white border-slate-200 hover:bg-slate-50'
+            }`;
+
+            const heartIcon = likeBtn.querySelector('i');
+            if (heartIcon) {
+                if (isLiked) {
+                    heartIcon.classList.add('fill-current');
+                } else {
+                    heartIcon.classList.remove('fill-current');
+                }
+            }
+
+            likeBtn.onclick = () => handleLikeToggle(id);
+        }
+
+        function closeModal() {
+            const container = document.getElementById("modal-container");
+            const content = document.getElementById("modal-content");
+            if (container && content) {
+                content.classList.remove("scale-100", "opacity-100");
+                content.classList.add("scale-95", "opacity-0");
+                setTimeout(() => { container.classList.add("hidden"); }, 200);
+            }
+        }
+
+        // --- 検索及び診断のリセット ---
+        function resetSearch() {
+            currentSituation = "すべて";
+            searchQuery = "";
+            
+            const searchInput = document.getElementById("search-input");
+            if (searchInput) searchInput.value = "";
+
+            document.querySelectorAll(".situation-btn").forEach(btn => {
+                btn.classList.remove("bg-navy-900", "text-white", "border-transparent");
+                btn.classList.add("bg-slate-50", "text-[#2D3142]", "border-slate-200/60");
+                const textNavy = btn.querySelector('.text-navy-900');
+                if (textNavy) textNavy.classList.remove('text-white');
+                const textSlate = btn.querySelector('.text-slate-400');
+                if (textSlate) textSlate.classList.remove('text-slate-200');
+            });
+
+            const banner = document.getElementById("diagnostic-banner");
+            if (banner) banner.classList.add("hidden");
+
+            const titleEl = document.getElementById("current-view-title");
+            if (titleEl) titleEl.textContent = "すべてのアクション一覧";
+
+            renderCards();
+        }
+
+        // --- STREAMING_CHUNK: Registering DOM and key listeners... -->
+        // --- イベントリスナー設定 ---
+        function setupEventListeners() {
+            const searchInput = document.getElementById("search-input");
+            const searchButton = document.getElementById("search-button");
+
+            // キーワード入力時のリアルタイム連動
+            if (searchInput) {
+                searchInput.addEventListener("input", (e) => {
+                    searchQuery = e.target.value;
+                    renderCards();
+                });
+                searchInput.addEventListener("keypress", (e) => {
+                    if (e.key === 'Enter') {
+                        searchQuery = searchInput.value;
+                        renderCards();
+                    }
+                });
+            }
+
+            // 検索ボタンクリック時の連動
+            if (searchButton && searchInput) {
+                searchButton.addEventListener("click", () => {
+                    searchQuery = searchInput.value;
+                    renderCards();
+                });
+            }
+
+            const container = document.getElementById("modal-container");
+            if (container) {
+                container.addEventListener("click", (e) => {
+                    if (e.target === container) closeModal();
+                });
+            }
+        }
+
+        // DOMの準備が整ったら起動
+        window.addEventListener("DOMContentLoaded", () => {
+            initApp();
+        });
+    </script>
+</body>
+</html>
