@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eats & Better | 何から始める？がすぐわかる、中高生のためのSDGsスタートガイド</title>
+    <title>Eats & Better | 中高生のためのSDGsスタートアクション16選</title>
     <!-- Tailwind CSS for high-quality minimalist design -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons for vector-based clean iconography -->
@@ -18,10 +18,13 @@
                             900: '#090d16',
                         },
                         sdgs: {
+                            3: '#4C9F38',  /* すべての人に健康と福祉を */
                             4: '#C5192D',  /* 質の高い教育をみんなに */
                             5: '#FF3A21',  /* ジェンダー平等 */
                             7: '#FCC30B',  /* エネルギーをクリーンに */
+                            11: '#F99D1C', /* 住み続けられるまちづくり */
                             12: '#CF8D2A', /* つくる責任つかう責任 */
+                            13: '#3F7E44', /* 気候変動に具体的な対策を */
                             14: '#007DBC', /* 海の豊かさを守ろう */
                             15: '#56DB3E', /* 陸の豊かさも守ろう */
                         }
@@ -56,7 +59,7 @@
                 <span class="text-base font-black text-navy-900 tracking-tight">Eats & Better</span>
             </div>
             <div class="text-[10px] text-slate-400 bg-slate-50 border border-slate-200/60 px-3 py-1 rounded-full font-mono font-bold tracking-wider">
-                SDGs START GUIDE FOR TEENS
+                16 START ACTIONS FOR TEENS
             </div>
         </div>
     </header>
@@ -85,7 +88,7 @@
                 <input 
                     type="text" 
                     id="search-input" 
-                    placeholder="キーワード（裏紙、スマホ、ボトル、服、SNSなど）で探す..." 
+                    placeholder="キーワード（ノート、スマホ、ボトル、服、SNSなど）で探す..." 
                     class="w-full pl-11 pr-24 py-4 rounded-2xl bg-transparent placeholder-slate-300 focus:outline-none text-slate-800 text-sm transition"
                 >
                 <div class="absolute right-2 top-2">
@@ -101,9 +104,9 @@
             <!-- 人気のタグサジェスト -->
             <div class="flex flex-wrap justify-center gap-2 mt-4 max-w-lg mx-auto text-[10px] text-slate-400 font-semibold">
                 <span>人気の言葉:</span>
-                <button onclick="setSearchTerm('裏紙')" class="underline hover:text-navy-900">#裏紙</button>
+                <button onclick="setSearchTerm('ノート')" class="underline hover:text-navy-900">#ノート</button>
                 <button onclick="setSearchTerm('スマホ')" class="underline hover:text-navy-900">#スマホ</button>
-                <button onclick="setSearchTerm('ステッカー')" class="underline hover:text-navy-900">#ステッカー</button>
+                <button onclick="setSearchTerm('ボトル')" class="underline hover:text-navy-900">#ボトル</button>
                 <button onclick="setSearchTerm('服')" class="underline hover:text-navy-900">#服</button>
             </div>
         </div>
@@ -185,7 +188,7 @@
             <div class="flex items-center space-x-3">
                 <button onclick="resetSearch()" class="text-[11px] font-bold text-slate-400 hover:text-navy-900 transition underline uppercase">すべて表示（リセット）</button>
                 <div class="text-[10px] text-slate-400 font-mono tracking-wider font-bold bg-white px-3 py-1.5 rounded-full border border-slate-100" id="results-count">
-                    ALL: 4
+                    ALL: 16
                 </div>
             </div>
         </div>
@@ -251,8 +254,9 @@
 
     <!-- コンパイル不要、ブラウザで100%確実に即時動作するJavaScript -->
     <script>
-        // --- データベース定義 (中高生に身近な非食品SDGsアクション) ---
+        // --- 16の充実した中高生向け具体的アクションデータ (非食品SDGsアクション) ---
         const ACTIONS_DATA = [
+            // 1. 学校で (🏫)
             {
                 id: "act-1",
                 title: "プリントの裏紙をまとめて「雑記・勉強用パッド」にする",
@@ -266,6 +270,41 @@
             },
             {
                 id: "act-2",
+                title: "シャープペンの芯を「最後の1ミリ」まで使い切る工夫",
+                category: "🏫 学校で",
+                tags: ["シャーペン", "芯", "文房具", "勉強", "学校"],
+                details: "芯が短くなってポロッと落ちてしまうのを防ぐため、残りの芯を次に補充した芯で後ろから押し出すように使うか、短くなっても書ける低重心のシャープペンを選んで、文房具のゴミを減らします。",
+                impact: "小さなプラスチックや黒鉛のゴミを減らすだけでなく、文房具を限界まで大切に使い切るという「ものを愛着を持って扱うサステナブルマインド」が育ちます。",
+                color: "#CF8D2A", // 目標12: つくる責任つかう責任
+                defaultLikes: 35,
+                shortIntro: "シャー芯が短くなってもすぐ捨てないで、最後まで使い切る方法を探してみよう！"
+            },
+            {
+                id: "act-3",
+                title: "使わなくなった教科書や参考書を部活の後輩に譲る",
+                category: "🏫 学校で",
+                tags: ["教科書", "参考書", "ワーク", "単語帳", "テスト", "後輩", "学校"],
+                details: "学年が上がって使わなくなったワーク、単語帳、参考書などを捨てずに、部活の後輩や友達に「これすごく分かりやすかったよ」と一言添えて譲ります。学校内での小さなシェアリングエコノミーです。",
+                impact: "新しく本が印刷され、購入されるサイクルを1冊分スキップ。教科書代の節約になるだけでなく、知識のバトンを繋ぐことで質の高い教育環境をみんなで支え合えます。",
+                color: "#C5192D", // 目標4: 質の高い教育をみんなに
+                defaultLikes: 52,
+                shortIntro: "テストが終わった参考書や単語帳、後輩や友達に譲ってリユースの輪を作ろう。"
+            },
+            {
+                id: "act-4",
+                title: "部活の道具（シューズやラケットなど）を毎週メンテナンスする",
+                category: "🏫 学校で",
+                tags: ["部活", "シューズ", "ラケット", "バッグ", "メンテナンス", "スポーツ", "学校"],
+                details: "ボロボロになったからすぐ買い換えるのではなく、週末にシューズの汚れを拭き取ったり、エナメルバッグを磨いたりしてメンテナンス。道具の寿命を1.5倍に延ばすことをゲーム感覚で楽しみます。",
+                impact: "スポーツ用品の製造・廃棄時に発生する環境負荷（ゴムや合成皮革の処理）を大幅に削減。1つの道具を長く使うアスリート精神こそがサステナブルです。",
+                color: "#F99D1C", // 目標11: 住み続けられるまちづくり
+                defaultLikes: 61,
+                shortIntro: "今週末は部活のシューズやラケットをじっくり磨いてみよう。長持ちさせるのがプロの技！"
+            },
+
+            // 2. 寄り道・放課後 (🏪)
+            {
+                id: "act-5",
                 title: "マイボトルのステッカーを自分で作ったりデコる",
                 category: "🏪 寄り道・放課後",
                 tags: ["水筒", "マイボトル", "デコ", "ステッカー", "放課後", "コンビニ", "塾", "寄り道"],
@@ -276,7 +315,42 @@
                 shortIntro: "いつものボトルを好きなロゴやステッカーでデコって、カバンに入れて出発しよう！"
             },
             {
-                id: "act-3",
+                id: "act-6",
+                title: "コンビニの「手前取り」＆小さな買い物はレジ袋を断る",
+                category: "🏪 寄り道・放課後",
+                tags: ["コンビニ", "手前取り", "レジ袋", "お菓子", "放課後", "寄り道"],
+                details: "放課後にお腹がすいてコンビニでお菓子やジュースを買うとき、棚の手前にある賞味期限が近いものから選ぶ（手前取り）。また、お菓子1個なら袋をもらわず、そのままカバンやポケットにイン！",
+                impact: "お店での期限切れ廃棄（フードロス）を未然に防ぎ、プラスチック袋の消費をカット。日々の小さなお買い物から地球を救うスマートな行動に変えられます。",
+                color: "#CF8D2A", // 目標12: つくる責任つかう責任
+                defaultLikes: 78,
+                shortIntro: "コンビニの買い食いは「手前取り」＆袋なし。ポケットに入れるだけでカッコいい！"
+            },
+            {
+                id: "act-7",
+                title: "1駅分を自転車や徒歩に変えて、街のエモい風景を見つける",
+                category: "🏪 寄り道・放課後",
+                tags: ["徒歩", "自転車", "歩く", "風景", "エモい", "放課後", "寄り道"],
+                details: "いつもは電車やバスに乗ってしまう距離を、天気のいい日は友達と歩いたり自転車で移動してみる。スマホを見ているだけでは気づかなかった、エモい路地裏や新しいお店を発見するチャンスになります。",
+                impact: "乗り物の利用を減らすことで二酸化炭素（CO2）の排出量をゼロに抑え、気候変動対策に貢献。同時に、自分の体力づくりやメンタルのリフレッシュにも最高の効果があります。",
+                color: "#3F7E44", // 目標13: 気候変動に具体的な対策を
+                defaultLikes: 43,
+                shortIntro: "たまには1駅分、友達と歩いて帰ってみよう。意外なエモいスポットが見つかるかも！"
+            },
+            {
+                id: "act-8",
+                title: "カフェで「ストローやスリーブ（持ち手）は不要です」と伝える",
+                category: "🏪 寄り道・放課後",
+                details: "放課後にカフェで冷たいドリンクを飲むとき、ストローを使わずに直接カップから飲むスタイルに挑戦。熱いカップに巻く紙の「スリーブ」も、ハンカチで代用するか、そのまま持って断ってみましょう。",
+                tags: ["カフェ", "ドリンク", "ストロー", "スリーブ", "ハンカチ", "放課後", "寄り道"],
+                impact: "わずか数分の使用で捨てられてしまう使い捨てプラスチックや紙のゴミを完全にゼロに。小さな意思表示が、社会全体の使い捨て文化を変える一歩になります。",
+                color: "#007DBC", // 目標14: 海の豊かさを守ろう
+                defaultLikes: 55,
+                shortIntro: "カフェの注文で「ストローなしで大丈夫です」って言ってみよう。スマートで大人な選択！"
+            },
+
+            // 3. 自室・おうち (🏠)
+            {
+                id: "act-9",
                 title: "使っていないコンセントや充電器をコンセントから抜く",
                 category: "🏠 自室・おうち",
                 tags: ["充電", "コンセント", "スマホ", "電気", "部屋", "おうち"],
@@ -287,25 +361,91 @@
                 shortIntro: "スマホの充電が終わったら、コードを抜く！部屋を出るとき電気を消す、これだけでOK。"
             },
             {
-                id: "act-4",
+                id: "act-10",
+                title: "ヘアアイロンやドライヤーを使ったら一瞬で主電源をOFF",
+                category: "🏠 自室・おうち",
+                tags: ["ヘアアイロン", "ドライヤー", "電気", "節電", "部屋", "おうち"],
+                details: "朝のヘアセットや、お風呂上がりにヘアアイロン・ドライヤーを使い終わったら、すぐにスイッチを切り、コンセントを抜きます。「あとでまた直すかも」と熱いまま放置する時間をゼロにします。",
+                impact: "ヘアアイロンなどの熱を出す電化製品は、実は家の中でもトップクラスに消費電力が高いアイテムです。使う時間を縮めるだけで、大きな節電効果を生み出します。",
+                color: "#FCC30B", // 目標7: エネルギーをクリーンに
+                defaultLikes: 49,
+                shortIntro: "アイロンやドライヤーを使い終わったら即OFF。高い熱の放置は電力の敵！"
+            },
+            {
+                id: "act-11",
+                title: "寝る前の15分間、画面を消して「静かな部屋」を楽しむ",
+                category: "🏠 自室・おうち",
+                tags: ["スマホ", "SNS", "ブルーライト", "睡眠", "部屋", "おうち"],
+                details: "ベッドに入ってからダラダラとSNSのショート動画を見続けるのをやめ、寝る前15分はスマホを遠くに置いて部屋を暗くします。バックグラウンドの通信データサーバーの負荷もそっと下がります。",
+                impact: "夜間の端末・液晶の消費電力を抑えるだけでなく、ブルーライトを浴びないことで自分の睡眠の質（ウェルビーイング）が劇的に向上。自分を大切にする健康的なサステナビリティです。",
+                color: "#4C9F38", // 目標3: すべての人に健康と福祉を
+                defaultLikes: 67,
+                shortIntro: "寝る前15分だけスマホを枕元から離してみよう。深い睡眠は自分へのサステナ！"
+            },
+            {
+                id: "act-12",
+                title: "読まなくなった漫画やゲームをフリマアプリや古本屋へ",
+                category: "🏠 自室・おうち",
+                tags: ["漫画", "ゲーム", "本", "フリマ", "お小遣い", "部屋", "おうち"],
+                details: "自分の部屋の片付けをして、もう遊ばなくなったゲームや読み飽きた漫画を見つけたら、ゴミ箱に捨てるのではなくフリマアプリに出品したり、古本屋に持っていきます。新しい誰かの楽しみに変わります。",
+                impact: "ものを簡単にゴミにせず、必要としている人のもとへ循環させる『サーキュラーエコノミー（循環型経済）』を、自分の部屋から一番簡単な方法で体験・実践できます。",
+                color: "#CF8D2A", // 目標12: つくる責任つかう責任
+                defaultLikes: 73,
+                shortIntro: "古い漫画やゲームは捨てずにフリマアプリへ。ゴミを宝物に変えるマジック！"
+            },
+
+            // 4. 街・お買い物 (🛍️)
+            {
+                id: "act-13",
                 title: "「1シーズンで捨てない」自分の定番服をクローゼットに持つ",
                 category: "🛍️ 街・お買い物",
                 tags: ["服", "古着", "お買い物", "クローゼット", "定番", "おしゃれ"],
                 details: "『今週流行っているから』で服を選ぶのではなく、『来年の同じ季節にもきっと着ているな』と笑顔で想像できるお気に入りの服を見つけること。友達と服を貸し借りしたり、古着をチェックするのもとてもおしゃれです。",
                 impact: "衣服の大量生産・大量廃棄システムによる環境汚染を抑制。服を1年長く大切に着るだけで、アパレル産業全体の地球に対するダメージを大幅に引き下げることができます。",
-                color: "#CF8D2A", // 目標12: つくる責任
+                color: "#CF8D2A", // 目標12: つくる責任つかう責任
                 defaultLikes: 71,
                 shortIntro: "次の買い物では「来年も着たいか」心の中で1秒想像してみて。それが立派なSDGsです。"
+            },
+            {
+                id: "act-14",
+                title: "友達への誕プレに、モノではなく「エモい体験（デジタルチケット）」を贈る",
+                category: "🛍️ 街・お買い物",
+                tags: ["プレゼント", "ギフト", "誕生日", "カフェ", "チケット", "お買い物"],
+                details: "誕生日プレゼントを選ぶとき、使うか分からない雑貨やコスメ（いずれゴミになってしまうかもしれないモノ）ではなく、一緒にカフェに行くためのデジタルドリンクチケットなどをオンラインでスマートに贈ります。",
+                impact: "パッケージや包装紙、売れ残りのプラスチックゴミを出さない『コト消費』の選択。形に残るゴミではなく、一生消えない「最高の思い出と楽しい時間」をプレゼントします。",
+                color: "#F99D1C", // 目標11: 住み続けられるまちづくり
+                defaultLikes: 59,
+                shortIntro: "友達の誕プレはカフェのドリンク券や映画のチケット。ゴミを出さないスマートな形！"
+            },
+            {
+                id: "act-15",
+                title: "ビニール傘を卒業して、カバンに「超軽量の折りたたみ傘」を常備",
+                category: "🛍️ 街・お買い物",
+                tags: ["傘", "ビニール傘", "雨", "折りたたみ傘", "常備", "お買い物"],
+                details: "急な雨が降るたびにコンビニで500〜800円の透明なビニール傘を買うのをやめます。自分のカバンの底に、デザインが気に入ったコンパクトで超軽量の折りたたみ傘をいつも忍ばせておきましょう。",
+                impact: "日本だけで毎年数千万本も廃棄されている『ビニール傘の大量使い捨てゴミ』の削減。無駄な出費もゼロになり、お財布にも地球にもスマートでスタイリッシュな行動です。",
+                color: "#56DB3E", // 目標15: 陸の豊かさも守ろう
+                defaultLikes: 91,
+                shortIntro: "急な雨でビニール傘を買うのはもう終わり。お気に入りの折りたたみ傘を相棒に！"
+            },
+            {
+                id: "act-16",
+                title: "動物実験をしていない（クルエルティフリー）コスメやヴィーガン雑貨を選ぶ",
+                category: "🛍️ 街・お買い物",
+                tags: ["コスメ", "ヘアオイル", "動物実験", "うさぎ", "エシカル", "お買い物"],
+                details: "ドラッグストアやショップで新しいリップやヘアオイルを選ぶとき、パッケージの裏を見て『うさぎのマーク』が付いているものや、『動物実験なし（Cruelty-Free）』と書かれたサステナブルブランドを意識して手に取ります。",
+                impact: "美しさのために動物たちが犠牲になるのを防ぎ、すべての生命の尊厳を守る消費行動（エシカル消費）。中高生の若い世代からトレンドを作ることで、社会をアップデートできます。",
+                color: "#56DB3E", // 目標15: 陸の豊かさも守ろう
+                defaultLikes: 64,
+                shortIntro: "コスメを買うときは「うさぎのマーク（動物実験なし）」に注目。優しさでお洒落を作ろう。"
             }
         ];
 
-        // --- STREAMING_CHUNK: Managing application state variables... -->
         // --- アプリケーション状態 ---
         let currentSituation = "すべて";
         let searchQuery = "";
         let likesStore = { counts: {}, userLiked: [] };
 
-        // --- STREAMING_CHUNK: Launching and syncing likes storage... -->
         // --- アプリ起動と初期設定 ---
         function initApp() {
             initLikes();
@@ -346,7 +486,6 @@
             localStorage.setItem('eats_better_start_v1_likes', JSON.stringify(likesStore));
         }
 
-        // --- STREAMING_CHUNK: Implementing search-input tags helper... -->
         // タグによるかんたん検索挿入
         function setSearchTerm(word) {
             const input = document.getElementById("search-input");
@@ -357,7 +496,6 @@
             }
         }
 
-        // --- STREAMING_CHUNK: Handling diagnostic selection clicks... -->
         // --- シチュエーション診断ボード制御 ---
         function selectSituation(situation) {
             currentSituation = situation;
@@ -380,13 +518,13 @@
                 matchedItem = ACTIONS_DATA.find(x => x.id === "act-1");
             } else if (situation.includes("寄り道")) {
                 activeBtnId = "btn-store";
-                matchedItem = ACTIONS_DATA.find(x => x.id === "act-2");
+                matchedItem = ACTIONS_DATA.find(x => x.id === "act-5");
             } else if (situation.includes("自室")) {
                 activeBtnId = "btn-room";
-                matchedItem = ACTIONS_DATA.find(x => x.id === "act-3");
+                matchedItem = ACTIONS_DATA.find(x => x.id === "act-9");
             } else if (situation.includes("買い物")) {
                 activeBtnId = "btn-shopping";
-                matchedItem = ACTIONS_DATA.find(x => x.id === "act-4");
+                matchedItem = ACTIONS_DATA.find(x => x.id === "act-13");
             }
 
             const activeBtn = document.getElementById(activeBtnId);
@@ -425,7 +563,6 @@
             }
         }
 
-        // --- STREAMING_CHUNK: Constructing the card listing rendering logic... -->
         // --- メインレンダリング (キーワード検索 × 診断フィルター) ---
         function renderCards() {
             const grid = document.getElementById("action-cards-grid");
@@ -520,7 +657,6 @@
             bindLikeButtons();
         }
 
-        // --- STREAMING_CHUNK: Handling user click interactions and modals... -->
         // --- いいねのトグル（一回制限＆取り消し）処理 ---
         function handleLikeToggle(id) {
             const index = likesStore.userLiked.indexOf(id);
@@ -655,7 +791,6 @@
             renderCards();
         }
 
-        // --- STREAMING_CHUNK: Registering DOM and key listeners... -->
         // --- イベントリスナー設定 ---
         function setupEventListeners() {
             const searchInput = document.getElementById("search-input");
